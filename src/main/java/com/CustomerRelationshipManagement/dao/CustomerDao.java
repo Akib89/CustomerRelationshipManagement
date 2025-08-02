@@ -5,32 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CustomerDao {
+public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
-    //database
-//    @Autowired
-    SessionFactory sf;
-
-    public CustomerDao(SessionFactory sf) {
-        super();
-        this.sf = sf;
-    }
-
-
-    public String insertCustomer(Customer customer) {
-
-Session session = sf.openSession();
-
-Transaction tr = session.beginTransaction();
-
-session.save(customer);
-tr.commit();
-session.close();
-return "Customer inserted";
-//insert, update, delete->
-
-    }
 }
+
+
