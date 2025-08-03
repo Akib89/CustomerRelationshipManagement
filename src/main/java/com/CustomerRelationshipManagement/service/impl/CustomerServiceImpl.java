@@ -12,7 +12,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerDao customerDao;
+   private CustomerDao customerDao;
 
     @Override
     public Customer insertCustomer(Customer customer) {
@@ -31,7 +31,23 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found with ID: " + id));
     }
+    @Override
+    public String updateCustomer(Customer customer) {
+        if (!customerDao.existsById(customer.getId())) {
+            throw new RuntimeException("Cannot update. Customer not found with ID: " + customer.getId());
+        }
+        customerDao.save(customer);
+        return "Customer updated successfully.";
+    }
+@Override
+    public String deleteCustomerById(Integer id) {
 
+        if (customerDao.existsById(id)) {
+        customerDao.deleteById(id);}
+        else {return "Customer not found with ID: " + id;}
+        return "Customer deleted successfully.";
+
+    }
 
 }
 

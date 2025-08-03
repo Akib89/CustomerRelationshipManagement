@@ -1,16 +1,14 @@
 package com.CustomerRelationshipManagement.controller;
 
+import com.CustomerRelationshipManagement.CustomerRelationshipManagementApplication;
 import com.CustomerRelationshipManagement.entity.Customer;
 import com.CustomerRelationshipManagement.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -37,5 +35,17 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) {
+        String result = customerService.updateCustomer(customer);
+        return ResponseEntity.ok(result);
+}
+@DeleteMapping("/delete/{id}")
+
+    public ResponseEntity<String> deleteCustomerById(@PathVariable Integer id) {
+        String result = customerService.deleteCustomerById(id);
+        return ResponseEntity.ok(result);
+    }
 
 }
+
