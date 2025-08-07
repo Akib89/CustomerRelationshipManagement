@@ -47,5 +47,19 @@ public class CustomerController {
         return ResponseEntity.ok(result);
     }
 
+
+    @PostMapping("/insert-multiple")
+    public ResponseEntity<List<Customer>> insertMultipleCustomers(@RequestBody List<Customer> customers) {
+        List<Customer> savedCustomers = customerService.insertMultipleCustomers(customers);
+        return ResponseEntity.ok(savedCustomers);
+    }
+
+    @GetMapping("/by-firstname/{firstName}")
+    public ResponseEntity<List<Customer>> getCustomersByFirstName(@PathVariable String firstName) {
+        List<Customer> customers = customerService.getCustomersByFirstName(firstName);
+        return ResponseEntity.ok(customers);
+    }
+
+
 }
 

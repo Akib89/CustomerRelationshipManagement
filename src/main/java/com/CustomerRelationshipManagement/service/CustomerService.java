@@ -16,4 +16,8 @@ public interface CustomerService {
 
     String updateCustomer(Customer customer);
 
+    List<Customer> insertMultipleCustomers(List<Customer> customers);
+
+    List<Customer> getCustomersByFirstName(String firstName);
+
 }

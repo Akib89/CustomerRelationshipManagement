@@ -49,5 +49,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
+    @Override
+    public List<Customer> insertMultipleCustomers(List<Customer> customers) {
+        return customerDao.saveAll(customers);
+    }
+
+    @Override
+    public List<Customer> getCustomersByFirstName(String firstName) {
+        return customerDao.findByFirstName(firstName);
+    }
+
 }
 
