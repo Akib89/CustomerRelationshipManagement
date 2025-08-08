@@ -1,9 +1,8 @@
 package com.CustomerRelationshipManagement.service.impl;
 
-import com.CustomerRelationshipManagement.dao.CustomerDao;
+import com.CustomerRelationshipManagement.repository.CustomerRepository;
 import com.CustomerRelationshipManagement.entity.Customer;
 import com.CustomerRelationshipManagement.service.CustomerService;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,38 +11,38 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-   private CustomerDao customerDao;
+   private CustomerRepository customerRepository;
 
     @Override
     public Customer insertCustomer(Customer customer) {
 
-        return customerDao.save(customer);
+        return customerRepository.save(customer);
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        return customerDao.findAll();
+        return customerRepository.findAll();
     }
 
 
     @Override
     public Customer getCustomerById(Integer id) {
-        return customerDao.findById(id)
+        return customerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found with ID: " + id));
     }
     @Override
     public String updateCustomer(Customer customer) {
-        if (!customerDao.existsById(customer.getId())) {
+        if (!customerRepository.existsById(customer.getId())) {
             throw new RuntimeException("Cannot update. Customer not found with ID: " + customer.getId());
         }
-        customerDao.save(customer);
+        customerRepository.save(customer);
         return "Customer updated successfully.";
     }
 @Override
     public String deleteCustomerById(Integer id) {
 
-        if (customerDao.existsById(id)) {
-        customerDao.deleteById(id);}
+        if (customerRepository.existsById(id)) {
+        customerRepository.deleteById(id);}
         else {return "Customer not found with ID: " + id;}
         return "Customer deleted successfully.";
 
@@ -51,12 +50,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> insertMultipleCustomers(List<Customer> customers) {
-        return customerDao.saveAll(customers);
+        return customerRepository.saveAll(customers);
     }
 
     @Override
     public List<Customer> getCustomersByFirstName(String firstName) {
-        return customerDao.findByFirstName(firstName);
+        return customerRepository.findAllByFirstNameEqualsIgnoreCase(firstName);
     }
 
 }

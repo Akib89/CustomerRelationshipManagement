@@ -16,20 +16,18 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "first_Name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_Name")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "mobile_Number")
+    @Column(name = "mobile_number")
     private String mobileNumber;
 
     @Column(name = "age")
     private String age;
-
-
 }

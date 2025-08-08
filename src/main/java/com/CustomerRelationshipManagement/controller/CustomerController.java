@@ -1,9 +1,9 @@
 package com.CustomerRelationshipManagement.controller;
 
-import com.CustomerRelationshipManagement.CustomerRelationshipManagementApplication;
 import com.CustomerRelationshipManagement.entity.Customer;
 import com.CustomerRelationshipManagement.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,14 +39,13 @@ public class CustomerController {
     public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) {
         String result = customerService.updateCustomer(customer);
         return ResponseEntity.ok(result);
-}
-@DeleteMapping("/delete/{id}")
+    }
 
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCustomerById(@PathVariable Integer id) {
         String result = customerService.deleteCustomerById(id);
         return ResponseEntity.ok(result);
     }
-
 
     @PostMapping("/insert-multiple")
     public ResponseEntity<List<Customer>> insertMultipleCustomers(@RequestBody List<Customer> customers) {

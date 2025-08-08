@@ -1,6 +1,5 @@
 package com.CustomerRelationshipManagement.service;
 
-import com.CustomerRelationshipManagement.dao.CustomerDao;
 import com.CustomerRelationshipManagement.entity.Customer;
 import java.util.List;
 
