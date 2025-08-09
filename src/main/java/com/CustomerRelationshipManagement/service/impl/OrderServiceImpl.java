@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAllByCustomerId(Integer customerId) {
         return orderRepository.findAllByOrderById(customerId);
     }
+    @Override
+    public Order insertOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
 
     @Override
     public Order save(Order order) {
@@ -50,5 +55,10 @@ public class OrderServiceImpl implements OrderService {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public List<Order> getAllOrders()
+    {
+        return orderRepository.findAll();
     }
 }

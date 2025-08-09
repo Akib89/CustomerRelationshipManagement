@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
-    public <Customer> findByFirstName(String firstName);
+
 
 }
 
